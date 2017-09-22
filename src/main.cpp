@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	MarkerDetector markerDetector(cam, marker9x9);
 
 	// load mesh model
-	GLMmodel *bmdl = glmReadOBJ("./data/lego.obj");
+	GLMmodel *bmdl = glmReadOBJ("../data/bunny.obj");
 	glmFacetNormals(bmdl);
 	glmVertexNormals(bmdl, 90.0f);
 	
@@ -34,6 +34,7 @@ int main(int argc, char **argv)
 	}
 	int frameWidth = (int)vc.get(CV_CAP_PROP_FRAME_WIDTH);
 	int frameHeight = (int)vc.get(CV_CAP_PROP_FRAME_HEIGHT);
+	std::cout << " frameWidth="<<frameWidth<<" frameHeight="<< frameHeight<<std::endl;
 	double frameFPS = 30.0;
 
 	// initialize a renderer
