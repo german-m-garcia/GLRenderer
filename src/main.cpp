@@ -1,8 +1,8 @@
-#include "glRenderer.h"
-#include "glm.h"
-#include "cvCamera.h"
-#include "markerDetector.h"
-#include "timer.h"
+#include "GLRenderer/glRenderer.h"
+#include "GLRenderer/glm.h"
+#include "GLRenderer/cvCamera.h"
+#include "GLRenderer/markerDetector.h"
+#include "GLRenderer/timer.h"
 
 int main(int argc, char **argv)
 {

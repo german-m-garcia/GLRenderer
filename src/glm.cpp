@@ -19,7 +19,7 @@ NOTE: all the indexes of vertex, normal and texture are from 1 (not 0).
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
-#include "glm.h"
+#include "GLRenderer/glm.h"
 
 #if defined(_WIN32) || defined(_MSC_VER)
 #define strup _strup
@@ -1321,7 +1321,7 @@ glmDelete(GLMmodel* model)
 * filename - name of the file containing the Wavefront .OBJ format data.
 */
 GLMmodel*
-glmReadOBJ(char* filename)
+glmReadOBJ(const char* filename)
 {
 	GLMmodel* model;
 	FILE* file;

@@ -1,4 +1,4 @@
-#include "marker.h"
+#include "GLRenderer/marker.h"
 
 Marker::Marker()
 	: m_id(-1), m_transformation(3, 4, CV_32FC1)

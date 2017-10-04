@@ -1,10 +1,44 @@
-#include "glRenderer.h"
-#include "glm.h"
-#include "cvCamera.h"
-#include "markerDetector.h"
-#include "timer.h"
+#include "GLRenderer/glRenderer.h"
+#include "GLRenderer/glm.h"
+#include "GLRenderer/cvCamera.h"
+#include "GLRenderer/markerDetector.h"
+#include "GLRenderer/timer.h"
+#include "GLRenderer/renderLib.h"
 
-int main(int argc, char **argv)
+int main(int argc, char **argv){
+
+	// offline calibrated camera parameters
+	float fxy = 832.560809f;
+	float cx = 319.5f;
+	float cy = 239.5f;
+	float distortions[5] = { 0.066338f, -1.51067f, 0.f, 0.f, 7.626152f };
+	int frameWidth = 640;
+	int frameHeight = 480;
+	cv::Mat pose = cv::Mat::eye(4,4,CV_32FC1);
+	pose.at<float>(0,3) = -0.053976193;;
+	pose.at<float>(1,3) = 0.053444523;
+	pose.at<float>(2,3) = atof(argv[1]);
+	std::cout <<"pose="<<std::endl<<pose<<std::endl;
+/*
+ * -0.053976193;
+ 0, 1, 0, 0.0053444523;
+ 0, 0, 1, 0.93838161;
+ *
+ *
+ */
+
+	std::string mesh_path("/home/tomatito/ws_slam/src/system_setup/meshes/kaffee_aligned_scaled_meters.obj");
+	RenderLib renderer(fxy, fxy, cx, cy,  distortions, frameWidth, frameHeight,mesh_path);
+	cv::Mat frameDrawing;
+
+
+	renderer.render(frameDrawing, pose);
+	cv::imshow("Show Marker", frameDrawing);
+	cv::waitKey(0);
+}
+
+
+int _main(int argc, char **argv)
 {
 	// offline calibrated camera parameters
 	float fxy = 832.560809f;
@@ -15,7 +49,7 @@ int main(int argc, char **argv)
 
 
 	// load mesh model
-	GLMmodel *bmdl = glmReadOBJ("../data/bunny.obj");
+	GLMmodel *bmdl = glmReadOBJ("/home/tomatito/ws_slam/src/system_setup/meshes/kaffee_aligned_scaled.obj");
 	glmFacetNormals(bmdl);
 	glmVertexNormals(bmdl, 90.0f);
 	
@@ -37,9 +71,9 @@ int main(int argc, char **argv)
 
 
 	cv::Mat markerTrans = cv::Mat::eye(4,4,CV_32FC1);
-	markerTrans.at<float>(0,3) = 3.;
-	markerTrans.at<float>(1,3) = 2.;
-	markerTrans.at<float>(2,3) = 10.;
+	markerTrans.at<float>(0,3) = 0.;
+	markerTrans.at<float>(1,3) = 0.;
+	markerTrans.at<float>(2,3) = 0.9;
 		
 
 	renderer.camera.setExtrinsic(markerTrans);

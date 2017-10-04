@@ -29,7 +29,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <cstring>
-#include "glInfo.h"
+#include "GLRenderer/glInfo.h"
 
 
 

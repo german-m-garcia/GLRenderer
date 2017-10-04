@@ -1,4 +1,4 @@
-#include "cvCamera.h"
+#include "GLRenderer/cvCamera.h"
 
 
 Camera::Camera() 

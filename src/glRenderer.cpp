@@ -1,5 +1,5 @@
-#include "glRenderer.h"
-#include "glm.h"
+#include "GLRenderer/glRenderer.h"
+#include "GLRenderer/glm.h"
 
 using std::stringstream;
 using std::string;
@@ -345,6 +345,9 @@ void GLRenderer::initGL()
 	glClearColor(0, 0, 0, 0);                   // background color
 	glClearDepth(1.0f);                         // 0 is near, 1 is far
 	glDepthFunc(GL_LEQUAL);
+
+	//enable wire mode
+	//glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
 	initLights();
 }
@@ -885,9 +888,9 @@ void GLRenderer::displayCB()
 		glLoadMatrixf(camera.getModelviewExtrinsic());
 
 		glPushMatrix();
-#if 0
+//#if 0
 		// draw object coordinate system
-		if (drawMode == 1)  //wireframe mode
+		//if (drawMode == 1)  //wireframe mode
 		{
 			glDisable(GL_DEPTH_TEST);
 			glDepthMask(GL_FALSE);
@@ -897,7 +900,7 @@ void GLRenderer::displayCB()
 			glEnable(GL_DEPTH_TEST);
 			glDepthMask(GL_TRUE);
 		}
-#endif
+//#endif
 
 		// draw object
 		glmDraw(model, GLM_MATERIAL | GLM_SMOOTH);

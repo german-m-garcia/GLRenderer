@@ -1,9 +1,9 @@
 #include <iostream>
 #include <sstream>
 
-#include "markerDetector.h"
-#include "marker.h"
-#include "cvCamera.h"
+#include "GLRenderer/markerDetector.h"
+#include "GLRenderer/marker.h"
+#include "GLRenderer/cvCamera.h"
 
 //#define SHOW_DEBUG_IMAGES
 
